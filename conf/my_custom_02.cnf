@@ -1,0 +1,5 @@
+[mysqld]
+max_allowed_packet=32M
+
+[mariadb]
+server_id=2
