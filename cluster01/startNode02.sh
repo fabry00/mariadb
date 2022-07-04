@@ -16,7 +16,7 @@ docker rm -f ${NODE_NAME} || true
 echo "Starting ${NODE_NAME}"
 docker run -d --name ${NODE_NAME} \
   --network host \
-  -v ${CONF}/my_custom_02.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro \
+  -v ${CONF}/my_custom_01.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro \
   -v ${DATA_DIR}:/bitnami/mariadb:rw \
   -e BITNAMI_DEBUG=true \
   -e MARIADB_GALERA_CLUSTER_NAME=my_galera \

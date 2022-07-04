@@ -1,4 +1,6 @@
 #!/bin/bash
+# If restoring from BACKUP create gpr..file manually
+
 HOST="127.0.0.1"
 NODE_NAME="cluster02-node-01"
 SERVER_ID_PER_CLUSTER=2
@@ -15,7 +17,7 @@ docker rm -f ${NODE_NAME} || true
 echo "Starting ${NODE_NAME}"
 docker run -d --name ${NODE_NAME} \
   --network host \
-  -v ${CONF}/my_custom_01.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro \
+  -v ${CONF}/my_custom_02.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro \
   -v ${DATA_DIR}:/bitnami/mariadb:rw \
   -e BITNAMI_DEBUG=true \
   -e MARIADB_GALERA_CLUSTER_NAME=my_galera \
@@ -23,6 +25,7 @@ docker run -d --name ${NODE_NAME} \
   -e MARIADB_GALERA_MARIABACKUP_PASSWORD=my_mariabackup_password \
   -e MARIADB_ROOT_PASSWORD=my_root_password \
   -e MARIADB_GALERA_CLUSTER_BOOTSTRAP=yes \
+  -e MARIADB_GALERA_FORCE_SAFETOBOOTSTRAP=yes \
   -e MARIADB_USER=my_user \
   -e MARIADB_PASSWORD=my_password \
   -e MARIADB_DATABASE=my_database \
